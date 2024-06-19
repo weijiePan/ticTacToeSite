@@ -57,12 +57,13 @@ function changeValue(order, td){
         
         
     }
+    td.onclick = "";
     turn++;
     if(checkWin() == 1){
-        setTimeout(function(){alert("player 1 has won")},0);
+        setTimeout(function(){alert("player 1 has won")},2);
         
-    }else if(checkWin == 2){
-        setTimeout(function(){alert("player 2 has won")},0);
+    }else if(checkWin() == 2){
+        setTimeout(function(){alert("player 2 has won")},2);
         
     }
     
