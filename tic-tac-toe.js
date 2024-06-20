@@ -58,6 +58,8 @@ function changeValue(order, td){
         
     }
     td.onclick = "";
+    console.log(values);
+    console.log(turn);
     turn++;
     if(checkWin() == 1){
         setTimeout(function(){alert("player 1 has won")},2);
@@ -65,34 +67,36 @@ function changeValue(order, td){
     }else if(checkWin() == 2){
         setTimeout(function(){alert("player 2 has won")},2);
         
-    }
+    } 
     
 }
 
 function checkWin(){
     
     //row check
-    for(let r = 0; r <3; r++){
+    for(let r = 0; r < 3; r++){
         const initialNum = values[r][0];
         let fullMatch = true;
         for(let c = 0; c < 3; c++){
-            if(initialNum !== values[r][c]){
+            if(initialNum !== values[r][c] || values[r][c] === 0){
                 fullMatch = false;
-                break;
-            }
+            }//it does not work because if the first line is unfilled, then all the values would be 0 and equal to each other,
+            //causing function to return 0 as initialNum
+            
         }
-        if(fullMatch){
+        if(fullMatch === true){
             return(initialNum);
         }
             
         
     }
     //column check
+    
     for(let c = 0; c <3; c++){
         const initialNum = values[0][c];
         let fullMatch = true;
         for(let r = 0; r < 3; r++){
-            if(initialNum !== values[r][c]){
+            if(initialNum !== values[r][c] || values[r][c] === 0){
                 fullMatch = false;
                 break;
             }
@@ -107,6 +111,7 @@ function checkWin(){
     if((values[0][0] === values[1][1] && values[1][1] === values[2][2]) || (values[0][2] === values[1][1] && values[1][1] === values[2][0])){
         return values[1][1];
     }
+    
         
     
 }
