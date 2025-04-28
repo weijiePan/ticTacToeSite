@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel = "stylesheet" href = "tic-tac-toe.css"/>
-    </head>
-    <body>
-        <table>
-            <tr>
-                <td id="td1"><p class = "choice"></p></td>
-                <td id="td2"><p class = "choice"></p></td>
-                <td id="td3"><p class = "choice"></p></td>
-            </tr>
-            <tr>
-                <td id="td4"><p class = "choice"></p></td>
-                <td id="td5"><p class = "choice"></p></td>
-                <td id="td6"><p class = "choice"></p></td>
-            </tr>
-            <tr>
-                <td id="td7"><p class = "choice"></p></td>
-                <td id="td8"><p class = "choice"></p></td>
-                <td id="td9"><p class = "choice"></p></td>
-            </tr>
-        </table>
-        <form class= "restart-form">
-            <button><a href = "index.html">Restart</a></button>
-        </form>
-        <script src="tic-tac-toe.js"></script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label for="userName1">player1 Name</label>
+        <input id = "userName1" name = "userName" type = "text">
+        <label for = "iconUrl1">iconUrl1</label>
+        <input id="iconUrl1" name = "iconUrl" type = "text">
+        <label for="userName2">player2 Name</label>
+        <input id = "userName2" name = "userName" type = "text">
+        <label for = "iconUrl2">iconUrl2</label>
+        <input id="iconUrl2" name = "iconUrl" type = "text">
+        <button type="submit" id="submit"></button>
+    </form>
+</body>
+<script src="index.js" type="module"></script>
+<script src="game.js" type="module"></script>
 </html>
