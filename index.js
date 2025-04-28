@@ -15,6 +15,8 @@ submitButton.addEventListener("click",function(e){
         table.appendChild(board[r]);
     }
     document.querySelector("body").appendChild(table);
+    table.style.margin = "auto";
+    //learn how to use translate
 })
 
 

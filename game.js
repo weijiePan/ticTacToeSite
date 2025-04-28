@@ -19,11 +19,13 @@ function createPlayer(name, iconUrl){
 function createCell(gm){
     let cell = document.createElement("td");
     let icon = document.createElement("img");
+    icon.style.width = "128px";
+    icon.style.height = "128px"; 
     icon.setAttribute("src", "./asset/blank128x128.png");
     icon.addEventListener("click", function (){
         if(icon.getAttribute("src") == "./asset/blank128x128.png"){
             gm.changeCurrPlayer(); 
-            icon.setAttribute("src", gm.currPlayer.iconUrl);//choosing how to pick where the new source is from?
+            icon.setAttribute("src", gm.getCurrPlayerUrl());//choosing how to pick where the new source is from?
         }
     });
     cell.appendChild(icon);
