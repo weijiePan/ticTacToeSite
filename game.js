@@ -26,17 +26,18 @@ function createCell(gm){
         if(icon.getAttribute("src") == "./asset/blank128x128.png"){
             gm.changeCurrPlayer(); 
             icon.setAttribute("src", gm.getCurrPlayerUrl());//choosing how to pick where the new source is from?
+            alert(gm.checkGameCondition());
         }
     });
     cell.appendChild(icon);
     return{cell};
 }
-function createGameManger(player1Name, player1IconUrl, player2Name, player2IconUrl){
+function createGameManger(player1Name, player1IconUrl , player2Name, player2IconUrl){
     //initiate game objects
     let player1 = createPlayer(player1Name,player1IconUrl);
     let player2 = createPlayer(player2Name, player2IconUrl);
     let currPlayer = player1;
-    let board = [];
+    let board = [];//contains 3 tr node, with 3 td node inside each tr
     let gm = {checkGameCondition, changeCurrPlayer, getCurrPlayerUrl, getBoard};
     //initiate board
     for(let r = 0; r <= 2; r++){
@@ -55,9 +56,46 @@ function createGameManger(player1Name, player1IconUrl, player2Name, player2IconU
 
     function checkGameCondition(){
         //checks win
-        //checks loss
+            //row check
+            for(let r = 0; r < 3; r++){
+                const currTr = board[r].childNodes;
+                const firstTdUrl = currTr[0].querySelector("img").getAttribute("src");
+                for(let c = 1; c < 3; c++){
+                    if(firstTdUrl == "./asset/blank128x128.png" || firstTdUrl != currTr[c].querySelector("img").getAttribute("src")){
+                        return false;
+                    }
+                }
+                return true;
+                    
+                
+            }
+            //column check
+            ```
+            for(let c = 0; c <3; c++){
+                const initialNum = values[0][c];
+                let fullMatch = true;
+                for(let r = 0; r < 3; r++){
+                    if(initialNum !== values[r][c] || values[r][c] === 0){
+                        fullMatch = false;
+                        break;
+                    }
+                }
+                if(fullMatch){
+                    return(initialNum);
+                }
+                    
+                
+            }
+            //diagonal check
+            if((values[0][0] === values[1][1] && values[1][1] === values[2][2]) || (values[0][2] === values[1][1] && values[1][1] === values[2][0])){
+                return values[1][1];
+            }
+            //checks row
+            //checks column
+            //checks diagonal
         //checks ties
         //awards point appropriately
+        ```
     }
     function changeCurrPlayer(){
         if(currPlayer === player1){
@@ -84,44 +122,7 @@ function createGameManger(player1Name, player1IconUrl, player2Name, player2IconU
 /*
 function checkWin(){
     
-    //row check
-    for(let r = 0; r < 3; r++){
-        const initialNum = values[r][0];
-        let fullMatch = true;
-        for(let c = 0; c < 3; c++){
-            if(initialNum !== values[r][c] || values[r][c] === 0){
-                fullMatch = false;
-            }//it does not work because if the first line is unfilled, then all the values would be 0 and equal to each other,
-            //causing function to return 0 as initialNum
-            
-        }
-        if(fullMatch === true){
-            return(initialNum);
-        }
-            
-        
-    }
-    //column check
-    
-    for(let c = 0; c <3; c++){
-        const initialNum = values[0][c];
-        let fullMatch = true;
-        for(let r = 0; r < 3; r++){
-            if(initialNum !== values[r][c] || values[r][c] === 0){
-                fullMatch = false;
-                break;
-            }
-        }
-        if(fullMatch){
-            return(initialNum);
-        }
-            
-        
-    }
-    //diagonal check
-    if((values[0][0] === values[1][1] && values[1][1] === values[2][2]) || (values[0][2] === values[1][1] && values[1][1] === values[2][0])){
-        return values[1][1];
-    }
+
     
         
     
