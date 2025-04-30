@@ -60,42 +60,38 @@ function createGameManger(player1Name, player1IconUrl , player2Name, player2Icon
             for(let r = 0; r < 3; r++){
                 const currTr = board[r].childNodes;
                 const firstTdUrl = currTr[0].querySelector("img").getAttribute("src");
-                for(let c = 1; c < 3; c++){
-                    if(firstTdUrl == "./asset/blank128x128.png" || firstTdUrl != currTr[c].querySelector("img").getAttribute("src")){
-                        return false;
-                    }
-                }
-                return true;
-                    
-                
-            }
-            //column check
-            ```
-            for(let c = 0; c <3; c++){
-                const initialNum = values[0][c];
                 let fullMatch = true;
-                for(let r = 0; r < 3; r++){
-                    if(initialNum !== values[r][c] || values[r][c] === 0){
+                for(let c = 1; c < 3 & fullMatch == true; c++){
+                    if(firstTdUrl == "./asset/blank128x128.png" || firstTdUrl != currTr[c].querySelector("img").getAttribute("src")){
                         fullMatch = false;
-                        break;
+
                     }
                 }
-                if(fullMatch){
-                    return(initialNum);
+                if(fullMatch == true){
+                    return true;
+                }
+            }
+            for(let c = 0; c <3; c++){
+                const firstRowUrl = board[0].childNodes[c].querySelector("img").getAttribute("src");
+                let fullMatch = true;
+                for(let r = 1; r < 3 && fullMatch == true; r++){
+                    if(firstRowUrl == "./asset/blank128x128.png" || firstRowUrl != board[r].childNodes[c].querySelector("img").getAttribute("src")){
+                        fullMatch = false;
+                    }
+                }
+                if(fullMatch == true){
+                    return true;
                 }
                     
                 
             }
             //diagonal check
-            if((values[0][0] === values[1][1] && values[1][1] === values[2][2]) || (values[0][2] === values[1][1] && values[1][1] === values[2][0])){
-                return values[1][1];
+            if((accessBoardUrl(0,0) === accessBoardUrl(1,1) && accessBoardUrl(1,1) === accessBoardUrl(2,2)) || (accessBoardUrl(0,2) === accessBoardUrl(1,1) && accessBoardUrl(1,1) === accessBoardUrl(2,0))){
+                return true;
             }
-            //checks row
-            //checks column
-            //checks diagonal
-        //checks ties
-        //awards point appropriately
-        ```
+    }
+    function accessBoardUrl(r,c){
+        return board[r].childNodes[c].querySelector("img").getAttribute("src");
     }
     function changeCurrPlayer(){
         if(currPlayer === player1){
