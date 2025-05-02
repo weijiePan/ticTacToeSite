@@ -86,10 +86,23 @@ function createGameManger(player1Name, player1IconUrl , player2Name, player2Icon
                 
             }
             //diagonal check
-            if((accessBoardUrl(0,0) === accessBoardUrl(1,1) && accessBoardUrl(1,1) === accessBoardUrl(2,2)) || (accessBoardUrl(0,2) === accessBoardUrl(1,1) && accessBoardUrl(1,1) === accessBoardUrl(2,0))){
-                return true;
+            for(let leftOrRight = 0; leftOrRight < 2; leftOrRight ++ ){
+                let fullMatch = true;
+                let prevUrl = board[0].childNodes[0 + (2 * leftOrRight)].querySelector("img").getAttribute("src");
+                for(let r = 1; r < 3; r++){
+                    const currUrl = board[r].childNodes[(2 * leftOrRight) + (leftOrRight == 0? r: r * -1)].querySelector("img").getAttribute("src");
+                    if(currUrl == "./asset/blank128x128.png" || currUrl != prevUrl){
+                        fullMatch = false;
+                    }else{
+                        prevUrl = currUrl;
+                    }
+                }
+                if(fullMatch){
+                    return fullMatch;
+                }
             }
-    }
+        }
+                
     function accessBoardUrl(r,c){
         return board[r].childNodes[c].querySelector("img").getAttribute("src");
     }
@@ -108,21 +121,6 @@ function createGameManger(player1Name, player1IconUrl , player2Name, player2Icon
     }
    
     return(gm);
-}    
-
-
-
-
-
-
-/*
-function checkWin(){
-    
-
-    
-        
-    
-}
-    */
-
+ 
+} 
 export {createGameManger};
