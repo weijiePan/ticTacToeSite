@@ -24,9 +24,9 @@ function createCell(gm){
     icon.setAttribute("src", "./asset/blank128x128.png");
     icon.addEventListener("click", function (){
         if(icon.getAttribute("src") == "./asset/blank128x128.png"){
-            gm.changeCurrPlayer(); 
             icon.setAttribute("src", gm.getCurrPlayerUrl());//choosing how to pick where the new source is from?
             gm.checkGameCondition();
+            gm.changeCurrPlayer(); 
         }
     });
     cell.appendChild(icon);
@@ -88,13 +88,17 @@ function createGameManger(player1Name, player1IconUrl , player2Name, player2Icon
                             fullMatch = false;
                         }
                     }
-                    rowMatchFirstUrl = fullMatch ? currTdUrl : null;
+                    
+                }
+                if(fullMatch){
+                    return(endGame(currTr[0].querySelector('img').getAttribute("src")));
                 }
                 
+                
             }
-            if(rowMatchFirstUrl != null){
-                return (endGame(rowMatchFirstUrl));
-            }
+            // if(rowMatchFirstUrl != null){
+            //     return (endGame(rowMatchFirstUrl));
+            // }
             for(let c = 0; c <3; c++){
                 const firstRowUrl = board[0].childNodes[c].querySelector("img").getAttribute("src");
                 let fullMatch = true;
